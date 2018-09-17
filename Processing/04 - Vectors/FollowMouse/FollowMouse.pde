@@ -2,7 +2,7 @@ PVector previousPosition = new PVector(0, 0);
 PVector position = new PVector(0, 0);
 float speed = 0.05;
 
- void setup() 
+void setup() 
 {
 	size (700, 500);
   	strokeWeight(5);

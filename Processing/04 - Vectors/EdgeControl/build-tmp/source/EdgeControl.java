@@ -16,9 +16,9 @@ public class EdgeControl extends PApplet {
 
 PVector position = new PVector(width/2, height/2);
 float speed = 2.8f;
+int size = 10;
 int xDir = 1;
 int yDir = 1;
-int size = 10;
 
 public void setup() 
 {
