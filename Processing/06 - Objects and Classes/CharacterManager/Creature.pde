@@ -2,7 +2,7 @@ class Creature
 {
 	PVector position;
 	PVector velocity;
-	int size = 10;
+	int size;
 
 	public Creature() 
 	{
@@ -11,8 +11,8 @@ class Creature
 		position.y = random(0, height);
 
 		velocity = new PVector();
-		velocity.x = random(10) - 5;
-		velocity.y = random(10) - 5;
+		velocity.x = random(-2, 2);
+		velocity.y = random(-2, 2);
 	}
 
 	void update() 
@@ -33,6 +33,6 @@ class Creature
 
 	void draw() 
 	{
-		ellipse(position.x - size/2, position.y - size/2, size, size);
+		ellipse(position.x, position.y, size, size);
 	}
 }

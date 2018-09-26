@@ -1,6 +1,8 @@
 int spawnCount = 1;
 ArrayList<Creature> humans;
 ArrayList<Creature> zombies;
+boolean gameOver = false;
+float time;
 
 void setup()
 {
@@ -9,7 +11,7 @@ void setup()
 	size(512, 512);
 
 	for (int i = 0; i < 99; i++) humans.add(new Human());
-	for (int i = 0; i < 1; i++) zombies.add(new Zombie());	
+	for (int i = 0; i < 1; i++) zombies.add(new Zombie());
 }
 
 void draw()
@@ -40,6 +42,7 @@ void draw()
 		zombies.get(i).update();
 		zombies.get(i).draw();
 	}
+	if (zombies.size() == humans.size() + zombies.size()) gameOver();
 }
 
 boolean collision(float x1, float y1, int size1, float x2, float y2, int size2) 
@@ -48,4 +51,14 @@ boolean collision(float x1, float y1, int size1, float x2, float y2, int size2)
 	if (abs(x1 - x2) > maxDistance || abs(y1 - y2) > maxDistance) return false;
 	else if (dist(x1, y1, x2, y2) > maxDistance) 			      return false;
 	else return true;
+}
+
+void gameOver() 
+{
+	if (!gameOver) time = millis() / 1000;
+	fill(0);
+	textSize(30);
+	textAlign(CENTER);
+	text("Game Over(" + time + " seconds)", width/2, height/2);
+	gameOver = true;
 }
