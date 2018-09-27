@@ -1,3 +1,7 @@
+color c;
+float rgb;
+boolean subtract;
+
 void setup() 
 {
 	size(450, 220);
@@ -7,7 +11,7 @@ void setup()
 void draw() 
 {
   	background(255);
-  	stroke(0);
+  	stroke(c);
 
     //D
     rect(30, 50, 75, 100, 7);
@@ -34,4 +38,16 @@ void draw()
     //L
     line(360, 50, 360, 150);
     line(360, 150, 425, 150);
+
+    colorAnimation();
+}
+
+void colorAnimation() 
+{   
+    println(rgb);
+    if (rgb == 255) subtract = true;
+    if (rgb == 0) subtract = false;
+    if (subtract) rgb -= 5;
+    else          rgb += 5;
+    c = color(rgb);
 }
