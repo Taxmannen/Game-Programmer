@@ -8,18 +8,18 @@ int speed = 50;
 void setup() 
 {	
 	frameRate(30);
-	size(512, 512);
+	size(512, 562);
 	ellipseMode(LEFT);
 
 	numberOfColums = (int)Math.floor(width/cellSize);
-	numberOfRows   = (int)Math.floor(height/cellSize);
+	numberOfRows   = (int)Math.floor((height - 50)/cellSize);
 
 	startup();
 }
 
 void draw() 
 {
-	if (frameCount % speed == 1) 
+	if (frameCount % - speed == 1) 
 	{
 		background(255);
 		for (int y = 0; y < numberOfRows; y++) 
@@ -31,8 +31,13 @@ void draw()
 			}
 		}	
 	}
+	ui();
+	spawnNew();
+	inputManager();
+}
 
-	SpawnNew();
+void inputManager() 
+{
 	if (getAxisRaw("Vertical") != 0) 
 	{
 		if (getAxisRaw("Vertical") < 0 && speed > 10) speed -= 1; 
@@ -41,7 +46,7 @@ void draw()
 	if (getButtonDown("Restart")) startup();
 }
 
-void SpawnNew() 
+void spawnNew() 
 {
 	for (int y = 0; y < numberOfRows; y++) 
 	{
@@ -50,7 +55,11 @@ void SpawnNew()
 			int neighbors = cells[x][y].numberOfNeighbors;
 			if (cells[x][y].alive) 
 			{
-				if (neighbors < 2  || neighbors > 3) cells[x][y].alive = false;
+				if (neighbors < 2  || neighbors > 3)
+				{ 
+					cells[x][y].alive = false;
+					cells[x][y].dead = true; 
+				}
 			}
 			if (!cells[x][y].alive && neighbors == 3) cells[x][y].alive = true;
 		}
@@ -68,4 +77,20 @@ void startup()
 			if (random(0, 100) < fillPercentage) cells[x][y].alive = true;
 		}
 	}
+	frameCount = 0;
+}
+
+void ui() 
+{
+	translate(width/2, height - 15);
+	textSize(20);
+	textAlign(CENTER);
+	
+	fill(255);
+	rect(-width/2, -25, width, 50);
+
+	fill(0);
+	text("R to restart", -100, 0);
+	text("Speed " + speed, 100, 0);
+	rect(-width/2, -30, width, 5);
 }

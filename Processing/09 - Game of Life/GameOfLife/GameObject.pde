@@ -1,6 +1,7 @@
 public class GameObject 
 {
 	boolean alive = false;
+	boolean dead = false;
 	PVector position;
 	PVector index;
 	float size;
@@ -15,10 +16,12 @@ public class GameObject
 
 	void draw() 
 	{
-		if (alive) 
+		if (alive || dead) 
 		{
-			fill(0);
-			stroke(255, 0, 0);
+			if (!dead) fill(0);
+			else fill(0, 50);
+
+			stroke(255);
 			rect(position.x, position.y, size, size);
 		}
 	}

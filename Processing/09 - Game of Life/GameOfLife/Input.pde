@@ -1,6 +1,7 @@
 boolean moveUp;
 boolean moveDown;
 boolean restart;
+boolean restartUp;
 
 void keyPressed() 
 {
@@ -28,7 +29,11 @@ void keyReleased()
 	{
 		if 		(key == 'w') moveUp = false;
 		else if (key == 's') moveDown = false;
-		else if (key == 'r') restart = false;
+		else if (key == 'r') 
+		{ 
+			restart = false; 
+			restartUp = true; 
+		}
 	}
 }
 
@@ -40,17 +45,15 @@ float getAxisRaw(String axis)
 		if (moveUp)   return -1;
 		if (moveDown) return 1;
 	}
-	
-	else if (axis == "Restart")
-	{
-		if (restart) return 1;
-		else return 0;
-	}
 	return 0;
 }
 
 boolean getButtonDown(String button) 
 {
-	if (button == "Restart" && restart) return true; 
+	if (button == "Restart" && restart && restartUp) 
+	{ 
+		restartUp = false;
+		return true; 
+	}
 	return false;
 }
