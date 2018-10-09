@@ -18,12 +18,15 @@ void setup()
 	{
 		for (int x = 0; x < numberOfColums; x++) 
 		{
-			cells[x][y] = new GameObject(x * cellSize, y * cellSize, cellSize);
+			cells[x][y] = new GameObject(x * cellSize, y * cellSize, cellSize, x, y);
 			if (random(0, 100) < fillPercentage) cells[x][y].alive = true;
 		}
 	}
-	neighborCheck();
-	println(numberOfColums);
+
+	for (int y = 0; y < numberOfRows; y++) 
+	{
+		for (int x = 0; x < numberOfColums; x++) cells[x][y].countNeighbors();
+	}
 }
 
 void draw() 
@@ -34,35 +37,6 @@ void draw()
 		for (int x = 0; x < numberOfColums; x++) 
 		{ 
 			cells[x][y].draw();
-		}
-	}
-}
-
-void neighborCheck() 
-{
-	for (int y = 0; y < numberOfRows; y++) 
-	{
-		for (int x = 0; x < numberOfColums; x++) 
-		{
-			if (cells[x][y].alive)
-			{
-				if (x - 1 >= 0 && cells[x-1][y].alive) 			 cells[x][y].numberOfNeighbors++;
-				if (y - 1 >= 0 && cells[x][y-1].alive) 			 cells[x][y].numberOfNeighbors++;
-				if (x + 1 < cells.length && cells[x+1][y].alive) cells[x][y].numberOfNeighbors++;
-				if (y + 1 < cells.length && cells[x][y+1].alive) cells[x][y].numberOfNeighbors++;
-
-				if ((y + 1) < cells.length)
-				{
-					if (x - 1 >= 0 && cells[x-1][y+1].alive) 		   cells[x][y].numberOfNeighbors++;
-					if (x + 1 < cells.length && cells[x+1][y+1].alive) cells[x][y].numberOfNeighbors++;
-				}
-
-				if ((y - 1) > 0) 
-				{
-					if (x - 1 >= 0 && cells[x-1][y-1].alive) 		   cells[x][y].numberOfNeighbors++;
-					if (x + 1 < cells.length && cells[x+1][y-1].alive) cells[x][y].numberOfNeighbors++;
-				}
-			}
 		}
 	}
 }
