@@ -4,6 +4,7 @@ int numberOfColums;
 int numberOfRows;
 int fillPercentage = 15;
 int speed = 50;
+Ui ui;
 
 void setup() 
 {	
@@ -14,6 +15,7 @@ void setup()
 	numberOfColums = (int)Math.floor(width/cellSize);
 	numberOfRows   = (int)Math.floor((height - 50)/cellSize);
 
+	ui = new Ui();
 	startup();
 }
 
@@ -31,7 +33,7 @@ void draw()
 			}
 		}	
 	}
-	ui();
+	ui.update();
 	spawnNew();
 	inputManager();
 }
@@ -78,19 +80,4 @@ void startup()
 		}
 	}
 	frameCount = 0;
-}
-
-void ui() 
-{
-	translate(width/2, height - 15);
-	textSize(20);
-	textAlign(CENTER);
-	
-	fill(255);
-	rect(-width/2, -25, width, 50);
-
-	fill(0);
-	text("R to restart", -100, 0);
-	text("Speed " + speed, 100, 0);
-	rect(-width/2, -30, width, 5);
 }
