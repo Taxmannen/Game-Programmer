@@ -11,7 +11,7 @@ void setup()
 	ellipseMode(LEFT);
 
 	numberOfColums = (int)Math.floor(width/cellSize);
-	numberOfRows = (int)Math.floor(height/cellSize);
+	numberOfRows   = (int)Math.floor(height/cellSize);
 
 	cells = new GameObject[numberOfColums][numberOfRows];
 	for (int y = 0; y < numberOfRows; y++) 
@@ -19,10 +19,11 @@ void setup()
 		for (int x = 0; x < numberOfColums; x++) 
 		{
 			cells[x][y] = new GameObject(x * cellSize, y * cellSize, cellSize);
-			if (random(0 , 100) < fillPercentage) cells[x][y].alive = true;
+			if (random(0, 100) < fillPercentage) cells[x][y].alive = true;
 		}
 	}
 	neighborCheck();
+	println(numberOfColums);
 }
 
 void draw() 
@@ -45,12 +46,10 @@ void neighborCheck()
 		{
 			if (cells[x][y].alive)
 			{
-				println(x + " " + y);
-				if (x - 1 >= 0 && cells[x--][y].alive) 			 cells[x][y].numberOfNeighbors++;
-				if (y - 1 >= 0 && cells[x][y--].alive) 			 cells[x][y].numberOfNeighbors++;
-				if (x + 1 < cells.length && cells[x++][y].alive) cells[x][y].numberOfNeighbors++;
-				if (y + 1 < cells.length && cells[x][y++].alive) cells[x][y].numberOfNeighbors++;
-
+				if (x - 1 >= 0 && cells[x-1][y].alive) 			 cells[x][y].numberOfNeighbors++;
+				if (y - 1 >= 0 && cells[x][y-1].alive) 			 cells[x][y].numberOfNeighbors++;
+				if (x + 1 < cells.length && cells[x+1][y].alive) cells[x][y].numberOfNeighbors++;
+				if (y + 1 < cells.length && cells[x][y+1].alive) cells[x][y].numberOfNeighbors++;
 
 				if ((y + 1) < cells.length)
 				{
@@ -75,10 +74,13 @@ void SpawnNew()
 		for (int x = 0; x < numberOfColums; x++) 
 		{
 			int neighbors = cells[x][y].numberOfNeighbors;
-			if 		(neighbors < 2) 				   println("DÖ");
-			else if (neighbors == 2 || neighbors == 3) println("Forsätt leva");
-			else if (neighbors > 3) 				   println("DÖ");
-			else if (neighbors == 3)				   println("Lev");
+			if (cells[x][y].alive) 
+			{
+				if 		(neighbors < 2) 				   println("DÖ(Underpopulation)");
+				else if (neighbors == 2 || neighbors == 3) println("Forsätt leva(Next Generation)");
+				else if (neighbors > 3) 				   println("DÖ(Overpopulation)");
+			}
+			if (!cells[x][y].alive && neighbors == 3) println("Ny(Reproduction)");
 		}
 	}
 }
