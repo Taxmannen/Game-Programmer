@@ -2,21 +2,25 @@ public class GameObject
 {
 	boolean alive = false;
 	PVector position;
+	PVector index;
 	float size;
 	int numberOfNeighbors;
-	int x, y;
 
 	public GameObject(float x, float y, float size, int xIndex, int yIndex) 
 	{
 		position = new PVector(x, y);
+		index = new PVector(xIndex, yIndex);
 		this.size = size;
-		this.x = xIndex;
-		this.y = yIndex;
 	}
 
 	void draw() 
 	{
-		if (alive) ellipse(position.x, position.y, size, size);
+		if (alive) 
+		{
+			fill(0);
+			stroke(255, 0, 0);
+			rect(position.x, position.y, size, size);
+		}
 	}
 
 	void countNeighbors() 
@@ -24,6 +28,8 @@ public class GameObject
 		numberOfNeighbors = 0;
 		if (alive) 
 		{
+			int x = (int)index.x;
+			int y = (int)index.y;
 			if (x - 1 >= 0 && cells[x-1][y].alive)		     numberOfNeighbors++;
 			if (y - 1 >= 0 && cells[x][y-1].alive) 			 numberOfNeighbors++;
 			if (x + 1 < cells.length && cells[x+1][y].alive) numberOfNeighbors++;
@@ -41,6 +47,5 @@ public class GameObject
 				if (x + 1 < cells.length && cells[x+1][y-1].alive) numberOfNeighbors++;
 			}
 		}
-		println(numberOfNeighbors);
 	}
 }
