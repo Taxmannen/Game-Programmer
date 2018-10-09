@@ -4,7 +4,7 @@ float y;
 
 void setup()
 {
-	size (720, 480);
+	size(720, 480);
   	strokeWeight(5);
 }
 
