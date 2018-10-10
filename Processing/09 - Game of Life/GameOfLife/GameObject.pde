@@ -35,9 +35,6 @@ public class GameObject
 		neighbors = 0;
 		if (alive) 
 		{
-			//COLUMS VÄNSTER OCH HÖGER
-			//ROWS UPP O NER
-			println("Cells Length " + cells.length + " Rows " + numberOfRows + " Colums " + numberOfColums);
 			int x = (int)index.x;
 			int y = (int)index.y;
 			if (x - 1 >= 0 && cells[x-1][y].alive)		     neighbors++;
