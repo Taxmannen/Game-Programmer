@@ -37,20 +37,20 @@ public class GameObject
 		{
 			int x = (int)index.x;
 			int y = (int)index.y;
-			if (x - 1 >= 0 && cells[x-1][y].alive)		     neighbors++;
-			if (y - 1 >= 0 && cells[x][y-1].alive) 			 neighbors++;
+			if (x - 1 >= 0 && cells[x-1][y].alive)		       neighbors++;
+			if (y - 1 >= 0 && cells[x][y-1].alive) 			   neighbors++;
 			if (x + 1 < numberOfColums && cells[x+1][y].alive) neighbors++;
-			if (y + 1 < numberOfRows && cells[x][y+1].alive) neighbors++;
+			if (y + 1 < numberOfRows && cells[x][y+1].alive)   neighbors++;
 
 			if ((y + 1) < numberOfRows)
 			{
-				if (x - 1 >= 0 && cells[x-1][y+1].alive) 		   neighbors++;
+				if (x - 1 >= 0 && cells[x-1][y+1].alive) 		     neighbors++;
 				if (x + 1 < numberOfColums && cells[x+1][y+1].alive) neighbors++;
 			}
 
 			if ((y - 1) > 0) 
 			{
-				if (x - 1 >= 0 && cells[x-1][y-1].alive) 		   neighbors++;
+				if (x - 1 >= 0 && cells[x-1][y-1].alive) 		     neighbors++;
 				if (x + 1 < numberOfColums && cells[x+1][y-1].alive) neighbors++;
 			}
 		}

@@ -28,17 +28,17 @@ class Ui
 
 	void draw() 
 	{
-		translate(width/2, height - 15);
-		textSize(20);
+		translate(0, height - 15);
+		textSize(17.5);
 		textAlign(CENTER);
 
 		fill(255);
-		rect(-width/2, -25, width, 50);
+		rect(0, -25, width, 50);
 
 		fill(0);
-		text("R to restart", -175, 0);
-		text("Speed:" + displaySpeed, 0, 0);
-		text("Spawnrate:" + fillPercentage, 175, 0);
-		rect(-width/2, -36, width, 5);
+		text("[R] Restart", width/2, 0);
+		text("[W] Speed:" + displaySpeed + " [S]", 100, 0);
+		text("[A] Spawnrate:" + fillPercentage + " [D]", width - 100, 0);
+		rect(0, -36, width, 5);
 	}
 }
