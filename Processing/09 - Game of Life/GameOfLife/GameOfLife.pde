@@ -1,5 +1,6 @@
 GameObject cells[][];
 float cellSize = 10;
+int fps = 30;
 int numberOfColums;
 int numberOfRows;
 int fillPercentage = 25;
@@ -7,7 +8,7 @@ Ui ui;
 
 void setup() 
 {	
-	frameRate(30);
+	frameRate(fps);
 	size(512, 562);
 	ellipseMode(LEFT);
 
@@ -34,26 +35,24 @@ void startup()
 
 void draw() 
 {
-	if (frameCount % - ui.speed == 1) 
-	{
-		background(255);
-		for (int y = 0; y < numberOfRows; y++) 
-		{
-			for (int x = 0; x < numberOfColums; x++) 
-			{ 
-				cells[x][y].draw();
-				cells[x][y].countNeighbors();
-			}
-		}	
-	}
+	background(255);
 	for (int y = 0; y < numberOfRows; y++) 
 	{
-		for (int x = 0; x < numberOfColums; x++) cells[x][y].update();
+		for (int x = 0; x < numberOfColums; x++) 
+		{ 
+			cells[x][y].draw();
+			cells[x][y].countNeighbors();
+		}
+	}	
+	for (int y = 0; y < numberOfRows; y++) 
+	{
+		for (int x = 0; x < numberOfColums; x++) 
+		{
+			if (frameCount % - ui.speed == 1 && frameCount > 10)
+			{
+				cells[x][y].update();
+			} 
+		}
 	}	
 	ui.update();
-}
-
-void acorn() 
-{
-
 }

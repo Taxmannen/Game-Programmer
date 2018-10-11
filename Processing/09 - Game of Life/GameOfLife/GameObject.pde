@@ -6,6 +6,8 @@ public class GameObject
 	PVector index;
 	float size;
 	int neighbors;
+	int alpha = 255;
+	int alphaSpeed = 5;
 
 	public GameObject(float x, float y, float size, int xIndex, int yIndex) 
 	{
@@ -21,10 +23,12 @@ public class GameObject
 
 	void draw() 
 	{
+		
+		if (dead && alpha > (50 + alphaSpeed)) alpha -= alphaSpeed;
 		if (alive || dead) 
 		{
-			if (!dead) fill(0);
-			else fill(0, 50);
+			if (dead) fill(255, 0, 0, alpha);
+			else fill(0, 255, 0);
 			stroke(255);
 			rect(position.x, position.y, size, size);
 		}
