@@ -24,11 +24,13 @@ public class GameObject
 	void draw() 
 	{
 		stroke(0);
-		if (dead && alpha > (50 + alphaSpeed)) alpha -= alphaSpeed;
+		if (dead  && alpha > (50  + alphaSpeed)) alpha -= alphaSpeed;
+		//if (alive && alpha < (255 - alphaSpeed)) alpha += alphaSpeed;
+
 		if (alive || dead) 
 		{
 			if (dead) fill(255, 0, 0, alpha);
-			else 	  fill(0, 255, 0);
+			else 	  fill(0, 255, 0, alpha);
 		}
 		else noFill();
 		rect(position.x, position.y, size, size);
