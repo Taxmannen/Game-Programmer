@@ -18,6 +18,7 @@ void setup()
 
 	ui = new Ui();
 	startup();
+	frame.requestFocus();
 }
 
 void startup() 
@@ -51,5 +52,28 @@ void draw()
 		}
 	}	
 	ui.update();
-	spawnNew();
+	spawnNewCell();
+}
+
+void spawnNewCell() 
+{
+	if (mousePressed) 
+	{
+		int x = (int)(mouseX/cellSize);
+		int y = (int)(mouseY/cellSize);
+		if (x < numberOfRows && y < numberOfColums) 
+		{
+			if(mouseButton == LEFT) 
+			{
+				cells[x][y].alive = true;
+				cells[x][y].dead  = false;
+			}
+			else if (mouseButton == RIGHT) 
+			{
+				cells[x][y].alive = false;
+				cells[x][y].dead  = true;
+			}
+			cells[x][y].alpha = 255;
+		}
+	}
 }

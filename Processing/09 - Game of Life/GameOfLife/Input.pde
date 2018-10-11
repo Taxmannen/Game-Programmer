@@ -4,6 +4,8 @@ boolean moveUp;
 boolean moveDown;
 boolean restart;
 boolean restartUp = true;
+boolean exit;
+boolean exitUp = true;
 
 void keyPressed() 
 {
@@ -13,6 +15,7 @@ void keyPressed()
 		else if (keyCode == DOWN)  moveDown = true;
 		else if (keyCode == LEFT)  moveLeft = true;
 		else if (keyCode == RIGHT) moveRight = true;
+		else if (keyCode == ESC)   exit = true;
 	}
 	else 
 	{
@@ -33,6 +36,7 @@ void keyReleased()
 		else if (keyCode == DOWN)  moveDown = false;
 		else if (keyCode == LEFT)  moveLeft = false;
 		else if (keyCode == RIGHT) moveRight = false;
+		else if (keyCode == ESC)   exit = false;
 	}
 	else 
 	{
@@ -72,19 +76,10 @@ boolean getButtonDown(String button)
 		restartUp = false;
 		return true; 
 	}
-	return false;
-}
-
-void spawnNew() 
-{
-	if (mousePressed) 
+	else if (button == "Exit" && exit && exitUp) 
 	{
-		int x = (int)(mouseX/cellSize);
-		int y = (int)(mouseY/cellSize);
-		if (x < numberOfRows && y < numberOfColums) 
-		{
-			cells[x][y].alive = true;
-			cells[x][y].dead  = false;
-		}
+		exitUp = false;
+		return true;
 	}
+	return false;
 }

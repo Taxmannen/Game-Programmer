@@ -24,18 +24,23 @@ class Ui
 			if (getAxisRaw("Horizontal") > 0 && fillPercentage < 100) fillPercentage += 1;
 		}
 		if (getButtonDown("Restart")) startup();
+		if (getButtonDown("Exit")) exit();
 	}
 
 	void draw() 
 	{
 		translate(0, height - 15);
-		textSize(17.5);
+		textSize(16);
 		textAlign(CENTER);
-
-		fill(0);
-		text("[R] Restart", width/2, 0);
-		text("[W] Speed:" + displaySpeed + " [S]", 100, 0);
-		text("[A] Spawnrate:" + fillPercentage + " [D]", width - 100, 0);
 		rect(0, -36, width, 2);
+		
+		fill(0);
+		text("[R] Restart", width/2, -15);
+		text("[W] Speed:" + displaySpeed + " [S]", 100, -15);
+		text("[A] Spawnrate:" + fillPercentage + " [D]", width - 100, -15);
+
+		text("[ESC] Exit", width/2, 10);
+		text("[Left Mouse] Spawn", 100, 10);
+		text("[Right Mouse] Kill", width - 100, 10);
 	}
 }
