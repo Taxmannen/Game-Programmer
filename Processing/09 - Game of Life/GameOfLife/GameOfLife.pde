@@ -49,4 +49,11 @@ void draw()
 		}
 	}	
 	ui.update();
+	if (mousePressed) 
+	{
+		int x = (int)(mouseX/cellSize);
+		int y = (int)(mouseY/cellSize);
+		cells[x][y].alive = true;
+		cells[x][y].dead  = false;
+	}
 }

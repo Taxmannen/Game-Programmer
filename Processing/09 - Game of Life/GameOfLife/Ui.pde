@@ -36,6 +36,6 @@ class Ui
 		text("[R] Restart", width/2, 0);
 		text("[W] Speed:" + displaySpeed + " [S]", 100, 0);
 		text("[A] Spawnrate:" + fillPercentage + " [D]", width - 100, 0);
-		rect(0, -36, width, 3);
+		rect(0, -36, width, 2);
 	}
 }
