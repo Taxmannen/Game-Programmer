@@ -61,9 +61,9 @@ void spawnNewCell()
 	{
 		int x = (int)(mouseX/cellSize);
 		int y = (int)(mouseY/cellSize);
-		if (x < numberOfRows && y < numberOfColums) 
+		if (x < numberOfRows && y < numberOfColums && x >= 0 && y >= 0) 
 		{
-			if(mouseButton == LEFT) 
+			if (mouseButton == LEFT) 
 			{
 				cells[x][y].alive = true;
 				cells[x][y].dead  = false;

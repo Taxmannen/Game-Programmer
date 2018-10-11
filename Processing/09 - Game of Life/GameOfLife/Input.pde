@@ -2,10 +2,13 @@ boolean moveLeft;
 boolean moveRight;
 boolean moveUp;
 boolean moveDown;
-boolean restart;
+boolean zoomIn;
+boolean zoomOut;
+
+boolean restartDown;
 boolean restartUp = true;
-boolean exit;
-boolean exitUp = true;
+boolean clearDown;
+boolean clearUp = true;
 
 void keyPressed() 
 {
@@ -15,7 +18,6 @@ void keyPressed()
 		else if (keyCode == DOWN)  moveDown = true;
 		else if (keyCode == LEFT)  moveLeft = true;
 		else if (keyCode == RIGHT) moveRight = true;
-		else if (keyCode == ESC)   exit = true;
 	}
 	else 
 	{
@@ -23,8 +25,11 @@ void keyPressed()
 		else if (key == 's') moveDown = true;
 		else if (key == 'a') moveLeft = true;
 		else if (key == 'd') moveRight = true;
-		else if (key == 'r') restart = true;
+		else if (key == 'q') zoomOut = true;
+		else if (key == 'e') zoomIn = true;
 
+		else if (key == 'r') restartDown = true;
+		else if (key == 'c') clearDown = true;
 	}
 }
 
@@ -36,7 +41,6 @@ void keyReleased()
 		else if (keyCode == DOWN)  moveDown = false;
 		else if (keyCode == LEFT)  moveLeft = false;
 		else if (keyCode == RIGHT) moveRight = false;
-		else if (keyCode == ESC)   exit = false;
 	}
 	else 
 	{
@@ -44,11 +48,19 @@ void keyReleased()
 		else if (key == 's') moveDown = false;
 		else if (key == 'a') moveLeft = false;
 		else if (key == 'd') moveRight = false;
+		else if (key == 'q') zoomOut = false;
+		else if (key == 'e') zoomIn = false;
+
 		else if (key == 'r') 
 		{ 
-			restart = false; 
-			restartUp = true; 
+			restartDown = false; 
+			restartUp   = true; 
 		}
+		else if (key == 'c') 
+		{
+			clearDown = false;
+			clearUp   = true;
+		} 
 	}
 }
 
@@ -60,25 +72,31 @@ float getAxisRaw(String axis)
 		if (moveUp)   return -1;
 		if (moveDown) return 1;
 	}
-	if (axis == "Horizontal") 
+	else if (axis == "Horizontal") 
 	{
 		if (moveLeft && moveRight) return 0;
 		if (moveLeft)  return -1;
 		if (moveRight) return 1;
+	}
+	else if (axis == "Zoom") 
+	{
+		if (zoomIn && zoomOut) return 0;
+		if (zoomOut) return -1;
+		if (zoomIn)  return 1;
 	}
 	return 0;
 }
 
 boolean getButtonDown(String button) 
 {
-	if (button == "Restart" && restart && restartUp) 
+	if (button == "Restart" && restartDown && restartUp) 
 	{ 
 		restartUp = false;
 		return true; 
 	}
-	else if (button == "Exit" && exit && exitUp) 
+	else if (button == "Clear" && clearDown && clearUp) 
 	{
-		exitUp = false;
+		clearUp = false;
 		return true;
 	}
 	return false;

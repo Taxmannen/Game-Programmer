@@ -24,7 +24,18 @@ class Ui
 			if (getAxisRaw("Horizontal") > 0 && fillPercentage < 100) fillPercentage += 1;
 		}
 		if (getButtonDown("Restart")) startup();
-		if (getButtonDown("Exit")) exit();
+		if (getButtonDown("Clear")) 
+		{ 
+			for (int y = 0; y < numberOfRows; y++) 
+			{
+				for (int x = 0; x < numberOfColums; x++) 
+				{
+					cells[x][y] = new GameObject(x * cellSize, y * cellSize, cellSize, x, y);
+					cells[x][y].alive = false;
+					cells[x][y].dead = false;
+				}
+			}
+		}
 	}
 
 	void draw() 
@@ -32,14 +43,15 @@ class Ui
 		translate(0, height - 15);
 		textSize(16);
 		textAlign(CENTER);
-		rect(0, -36, width, 2);
-		
+	
 		fill(0);
+		rect(0, -35.5, width, 2);
+		
 		text("[R] Restart", width/2, -15);
 		text("[W] Speed:" + displaySpeed + " [S]", 100, -15);
 		text("[A] Spawnrate:" + fillPercentage + " [D]", width - 100, -15);
 
-		text("[ESC] Exit", width/2, 10);
+		text("[C] Clear Board", width/2, 10);
 		text("[Left Mouse] Spawn", 100, 10);
 		text("[Right Mouse] Kill", width - 100, 10);
 	}
