@@ -74,3 +74,17 @@ boolean getButtonDown(String button)
 	}
 	return false;
 }
+
+void spawnNew() 
+{
+	if (mousePressed) 
+	{
+		int x = (int)(mouseX/cellSize);
+		int y = (int)(mouseY/cellSize);
+		if (x < numberOfRows && y < numberOfColums) 
+		{
+			cells[x][y].alive = true;
+			cells[x][y].dead  = false;
+		}
+	}
+}

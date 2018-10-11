@@ -1,3 +1,4 @@
+boolean acorn = false; //Sätt till true ifall du vill spawna "The Acorn"
 GameObject cells[][];
 float cellSize = 10;
 int numberOfColums;
@@ -5,13 +6,12 @@ int numberOfRows;
 int fillPercentage = 25;
 int fps = 30;
 Ui ui;
-boolean acorn = false; //Sätt till true ifall du vill spawna "The Acorn"
 
 void setup() 
 {	
 	frameRate(fps);
 	size(512, 562);
-	ellipseMode(LEFT);
+	ellipseMode(CENTER);
 
 	numberOfColums = (int)Math.floor(width/cellSize);
 	numberOfRows   = (int)Math.floor((height - 50)/cellSize);
@@ -52,34 +52,4 @@ void draw()
 	}	
 	ui.update();
 	spawnNew();
-}
-
-void spawnNew() 
-{
-	if (mousePressed) 
-	{
-		int x = (int)(mouseX/cellSize);
-		int y = (int)(mouseY/cellSize);
-		if (x < numberOfRows && y < numberOfColums) 
-		{
-			cells[x][y].alive = true;
-			cells[x][y].dead  = false;
-		}
-	}
-}
-
-void theAcorn()
-{
-	int x = numberOfColums/2;
-	int y = numberOfRows/2;
-
-	cells[x-2][y-1].alive = true;
-
-	cells[x][y].alive = true;
-
-	cells[x-3][y+1].alive = true;
-	cells[x-2][y+1].alive = true;
-	cells[x+1][y+1].alive = true;
-	cells[x+2][y+1].alive = true;
-	cells[x+3][y+1].alive = true;
 }

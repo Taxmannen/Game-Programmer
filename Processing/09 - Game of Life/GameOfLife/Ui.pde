@@ -1,13 +1,13 @@
 class Ui 
 {
-	int displaySpeed = 50;
-	int speed = 50;
+	int displaySpeed = 25;
+	int speed = 25;
 
 	void update() 
 	{
 		inputManager();
 		draw();
-		speed = 100 - (displaySpeed/2);
+		speed = 100 - (displaySpeed - 2);
 	}
 
 	void inputManager() 
