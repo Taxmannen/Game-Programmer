@@ -18,20 +18,20 @@ public class GameObject
 
 	void update() 
 	{
-		spawnNew();
+		aliveCheck();
 	}
 
 	void draw() 
 	{
-		
+		stroke(0);
 		if (dead && alpha > (50 + alphaSpeed)) alpha -= alphaSpeed;
 		if (alive || dead) 
 		{
 			if (dead) fill(255, 0, 0, alpha);
-			else fill(0, 255, 0);
-			stroke(255);
-			rect(position.x, position.y, size, size);
+			else 	  fill(0, 255, 0);
 		}
+		else noFill();
+		rect(position.x, position.y, size, size);
 	}
 
 	void countNeighbors() 
@@ -60,7 +60,7 @@ public class GameObject
 		}
 	}
 
-	void spawnNew() 
+	void aliveCheck() 
 	{
 		if (alive) 
 		{

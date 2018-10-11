@@ -32,13 +32,10 @@ class Ui
 		textSize(17.5);
 		textAlign(CENTER);
 
-		fill(255);
-		rect(0, -25, width, 50);
-
 		fill(0);
 		text("[R] Restart", width/2, 0);
 		text("[W] Speed:" + displaySpeed + " [S]", 100, 0);
 		text("[A] Spawnrate:" + fillPercentage + " [D]", width - 100, 0);
-		rect(0, -36, width, 5);
+		rect(0, -36, width, 3);
 	}
 }

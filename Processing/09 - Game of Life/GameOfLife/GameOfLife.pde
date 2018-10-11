@@ -1,9 +1,9 @@
 GameObject cells[][];
 float cellSize = 10;
-int fps = 30;
 int numberOfColums;
 int numberOfRows;
 int fillPercentage = 25;
+int fps = 30;
 Ui ui;
 
 void setup() 
@@ -42,12 +42,6 @@ void draw()
 		{ 
 			cells[x][y].draw();
 			cells[x][y].countNeighbors();
-		}
-	}	
-	for (int y = 0; y < numberOfRows; y++) 
-	{
-		for (int x = 0; x < numberOfColums; x++) 
-		{
 			if (frameCount % - ui.speed == 1 && frameCount > 10)
 			{
 				cells[x][y].update();
