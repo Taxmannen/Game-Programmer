@@ -53,7 +53,10 @@ void draw()
 	{
 		int x = (int)(mouseX/cellSize);
 		int y = (int)(mouseY/cellSize);
-		cells[x][y].alive = true;
-		cells[x][y].dead  = false;
+		if (x < numberOfRows && y < numberOfColums) 
+		{
+			cells[x][y].alive = true;
+			cells[x][y].dead  = false;
+		}
 	}
 }
