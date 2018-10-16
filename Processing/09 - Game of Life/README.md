@@ -1,3 +1,3 @@
 # Game of Life
 
-TODO Ladda upp GIF
+<b> TODO </b> Ladda upp GIF
