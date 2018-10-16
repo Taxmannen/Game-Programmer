@@ -9,10 +9,10 @@ public class GameObject
 	int alpha = 255;
 	int alphaSpeed = 5;
 
-	public GameObject(float x, float y, float size, int xIndex, int yIndex) 
+	public GameObject(PVector position, PVector index, float size) 
 	{
-		position = new PVector(x, y);
-		index = new PVector(xIndex, yIndex);
+		this.position = position;
+		this.index = index;
 		this.size = size;
 	}
 
@@ -25,7 +25,6 @@ public class GameObject
 	{
 		stroke(0);
 		if (dead  && alpha > (50  + alphaSpeed)) alpha -= alphaSpeed;
-		//if (alive && alpha < (255 - alphaSpeed)) alpha += alphaSpeed;
 
 		if (alive || dead) 
 		{

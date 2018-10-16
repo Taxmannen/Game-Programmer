@@ -30,7 +30,7 @@ class Ui
 			{
 				for (int x = 0; x < numberOfColums; x++) 
 				{
-					cells[x][y] = new GameObject(x * cellSize, y * cellSize, cellSize, x, y);
+					cells[x][y] = new GameObject(new PVector(x * cellSize, y * cellSize), new PVector(x, y), cellSize);
 					cells[x][y].alive = false;
 					cells[x][y].dead = false;
 				}
