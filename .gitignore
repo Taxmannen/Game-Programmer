@@ -1,11 +1,11 @@
 Processing/*/*/[Bb]uild-tmp/
 
-Unity/*/[Ll]ibrary/
-Unity/*/[Tt]emp/
-Unity/*/[Oo]bj/
-Unity/*/[Bb]uild/
-Unity/*/[Bb]uilds/
-Unity/*/Assets/AssetStoreTools*
+Unity/*/*/[Ll]ibrary/
+Unity/*/*/[Tt]emp/
+Unity/*/*/[Oo]bj/
+Unity/*/*/[Bb]uild/
+Unity/*/*/[Bb]uilds/
+Unity/*/*/Assets/AssetStoreTools*
 
 # Visual Studio cache directory
 Unity/*/.vs/
